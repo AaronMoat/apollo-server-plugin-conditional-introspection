@@ -31,5 +31,5 @@ jobs:
       - name: Publish to npm
         run: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.CI_NPM_TOKEN }}
