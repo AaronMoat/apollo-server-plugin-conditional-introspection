@@ -1,4 +1,4 @@
-import { ApolloServer, BaseContext } from '@apollo/server';
+import { ApolloServer, BaseContext, HeaderMap } from '@apollo/server';
 import { GraphQLError } from 'graphql';
 import gql from 'graphql-tag';
 
@@ -8,13 +8,14 @@ import {
 } from '.';
 
 describe('conditional introspection plugin', () => {
+  const apolloDefaultHeaders = { 'cache-control': 'no-store' };
   it('should disable introspection if the condition callback returns false', async () => {
     const { http, body } = await runQuery(
       { allowIntrospectionForRequest: () => false },
       'query { helloWorld __schema { queryType { name } } }',
     );
 
-    expect(http.headers).toEqual({});
+    expect(http).toEqual({ status: undefined, headers: apolloDefaultHeaders });
 
     expect(body).toEqual({
       data: null,
@@ -40,7 +41,10 @@ describe('conditional introspection plugin', () => {
       'query { helloWorld __schema { queryType { name } } }',
     );
 
-    expect(http.headers).toEqual({});
+    expect(http).toEqual({
+      status: 400,
+      headers: { ...apolloDefaultHeaders, 'x-custom-header': 'custom' },
+    });
 
     expect(body).toEqual({
       data: null,
@@ -53,13 +57,30 @@ describe('conditional introspection plugin', () => {
     });
   });
 
+  it('allow allow passing a HeaderMap for headers', async () => {
+    const { http } = await runQuery(
+      {
+        allowIntrospectionForRequest: () => false,
+        introspectionDisabledHeaders: new HeaderMap([
+          ['x-custom-header', 'custom'],
+        ]),
+      },
+      'query { helloWorld __schema { queryType { name } } }',
+    );
+
+    expect(http).toEqual({
+      status: undefined,
+      headers: { ...apolloDefaultHeaders, 'x-custom-header': 'custom' },
+    });
+  });
+
   it('should allow normal queries through if the condition callback returns false', async () => {
     const { http, body } = await runQuery(
       { allowIntrospectionForRequest: () => false },
       'query { helloWorld }',
     );
 
-    expect(http.headers).toEqual({});
+    expect(http).toEqual({ status: undefined, headers: apolloDefaultHeaders });
 
     expect(body).toEqual({
       data: { helloWorld: 'hello world!' },
@@ -72,7 +93,7 @@ describe('conditional introspection plugin', () => {
       'query { helloWorld __schema { queryType { name } } }',
     );
 
-    expect(http.headers).toEqual({});
+    expect(http).toEqual({ status: undefined, headers: apolloDefaultHeaders });
 
     expect(body).toEqual({
       data: {
@@ -92,7 +113,7 @@ describe('conditional introspection plugin', () => {
       'query { helloWorld }',
     );
 
-    expect(http.headers).toEqual({});
+    expect(http).toEqual({ status: undefined, headers: apolloDefaultHeaders });
 
     expect(body).toEqual({
       data: { helloWorld: 'hello world!' },
@@ -127,7 +148,7 @@ async function runQuery(
     http: {
       ...http,
       headers: Object.fromEntries(
-        Object.entries(http.headers).filter(([key]) => key !== '__identity'),
+        [...http.headers.entries()].filter(([key]) => key !== '__identity'),
       ),
     },
     body: body.kind === 'single' ? body.singleResult : body.initialResult,

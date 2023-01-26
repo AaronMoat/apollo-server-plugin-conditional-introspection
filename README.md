@@ -55,7 +55,7 @@ const server = new ApolloServer<YourContextType>({
 The plugin takes an options object with the following properties:
 
 - `allowIntrospectionForRequest`: A function that returns a boolean indicating whether introspection is allowed, for a given request, receiving in the request context. If this function returns `true`, introspection is allowed. If it returns `false`, introspection is not allowed.
-- `introspectionDisabledStatusCode`: What status code to return when introspection is not allowed, defaulting to 200
+- `introspectionDisabledStatusCode`: What status code to return when introspection is not allowed, defaulting to allowing apollo to decide (usually 200)
 - `introspectionDisabledHeaders`: What headers to return when introspection is not allowed, defaulting to no headers
 - `introspectionDisabledError`: A GraphQLError to return when introspection is not allowed - defaults to message = "Introspection is not allowed" and code = "INTROSPECTION_NOT_ALLOWED".
 

@@ -21,13 +21,13 @@ export type ApolloServerConditionalIntrospectionPluginOptions<
     requestContext: GraphQLRequestContextResponseForOperation<TContext>,
   ) => boolean;
   /**
-   * What status code to return when introspection is not allowed, defaulting to 200
+   * What status code to return when introspection is not allowed, defaulting to letting apollo decide (usually 200).
    **/
   introspectionDisabledStatusCode?: number;
   /**
    * What headers to return when introspection is not allowed, defaulting to no headers
    */
-  introspectionDisabledHeaders?: Record<string, string>;
+  introspectionDisabledHeaders?: Record<string, string> | HeaderMap;
   /**
    * What GraphQLError to return - defaulting to message = "Introspection is not allowed" and code = "INTROSPECTION_NOT_ALLOWED"
    */
@@ -71,16 +71,17 @@ export const createConditionalIntrospectionPlugin = <
         return null;
       }
 
-      const headers = new HeaderMap();
-      Object.entries(introspectionDisabledHeaders ?? {}).forEach(
-        ([key, value]) => {
-          headers.set(key, value);
-        },
-      );
+      const headers =
+        introspectionDisabledHeaders instanceof HeaderMap
+          ? introspectionDisabledHeaders
+          : Object.entries(introspectionDisabledHeaders ?? {}).reduce(
+              (headerMap, [key, value]) => headerMap.set(key, value),
+              new HeaderMap(),
+            );
 
       return {
         http: {
-          status: introspectionDisabledStatusCode ?? 200,
+          status: introspectionDisabledStatusCode,
           headers,
         },
         body: {
