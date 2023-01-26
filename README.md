@@ -1,6 +1,8 @@
 # apollo-server-plugin-conditional-introspection
 
-[![npm version](https://badge.fury.io/js/apollo-server-plugin-conditional-introspection.svg)](https://badge.fury.io/js/apollo-server-plugin-conditional-introspection)
+[![GitHub Release](https://github.com/AaronMoat/apollo-server-plugin-conditional-introspection/workflows/Release/badge.svg?branch=main)](https://github.com/AaronMoat/apollo-server-plugin-conditional-introspection/actions?query=workflow%3ARelease)
+[![GitHub Validate](https://github.com/AaronMoat/apollo-server-plugin-conditional-introspection/workflows/Validate/badge.svg?branch=main)](https://github.com/AaronMoat/apollo-server-plugin-conditional-introspection/actions?query=workflow%3AValidate)
+[![npm package](https://img.shields.io/npm/v/apollo-server-plugin-conditional-introspection)](https://www.npmjs.com/package/apollo-server-plugin-conditional-introspection)
 
 This plugin allows you to conditionally enable or disable introspection queries in Apollo Server. This can be turned on and off only globally, by default - the plugin allows you to enable or disable introspection queries based on the incoming request.
 
