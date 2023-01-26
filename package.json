@@ -1,0 +1,55 @@
+{
+  "name": "apollo-server-plugin-conditional-introspection",
+  "version": "0.0.0-semantically-released",
+  "description": "apollo-server-plugin-conditional-introspection",
+  "homepage": "https://github.com/AaronMoat/apollo-server-plugin-conditional-introspection#readme",
+  "bugs": {
+    "url": "https://github.com/AaronMoat/apollo-server-plugin-conditional-introspection/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AaronMoat/apollo-server-plugin-conditional-introspection.git"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./lib-commonjs/index.js",
+  "module": "./lib-es2015/index.js",
+  "types": "./lib-types/index.d.ts",
+  "files": [
+    "lib*/**/*.d.ts",
+    "lib*/**/*.js",
+    "lib*/**/*.js.map",
+    "lib*/**/*.json"
+  ],
+  "scripts": {
+    "build": "skuba build-package",
+    "commit": "cz",
+    "format": "skuba format",
+    "lint": "skuba lint",
+    "release": "yarn build && skuba release",
+    "test": "skuba test",
+    "test:ci": "skuba test --coverage",
+    "test:watch": "skuba test --watch"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^16.18.3",
+    "commitizen": "^4.2.4",
+    "skuba": "5.1.1"
+  },
+  "peerDependencies": {
+    "@apollo/server": "^4.3.2",
+    "graphql": "^16.6.0"
+  },
+  "skuba": {
+    "entryPoint": "src/index.ts",
+    "template": "oss-npm-package",
+    "type": "package",
+    "version": "5.1.1"
+  }
+}
