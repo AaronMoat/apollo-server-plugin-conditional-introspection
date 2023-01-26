@@ -38,11 +38,11 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@apollo/server": "^4.3.2",
     "@types/node": "^16.18.3",
     "commitizen": "^4.2.4",
-    "skuba": "5.1.1",
-    "@apollo/server": "^4.3.2",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "skuba": "5.1.1"
   },
   "peerDependencies": {
     "@apollo/server": "^4.3.2",
