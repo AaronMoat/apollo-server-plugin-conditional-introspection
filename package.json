@@ -53,5 +53,11 @@
     "template": "oss-npm-package",
     "type": "package",
     "version": "5.1.1"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "beta"
+    ]
   }
 }
