@@ -1,9 +1,9 @@
-import { ApolloServer, BaseContext, HeaderMap } from '@apollo/server';
+import { ApolloServer, type BaseContext, HeaderMap } from '@apollo/server';
 import { GraphQLError } from 'graphql';
 import gql from 'graphql-tag';
 
 import {
-  ApolloServerConditionalIntrospectionPluginOptions,
+  type ApolloServerConditionalIntrospectionPluginOptions,
   createConditionalIntrospectionPlugin,
 } from '.';
 
