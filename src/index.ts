@@ -1,7 +1,7 @@
 import {
-  ApolloServerPlugin,
-  BaseContext,
-  GraphQLRequestContextResponseForOperation,
+  type ApolloServerPlugin,
+  type BaseContext,
+  type GraphQLRequestContextResponseForOperation,
   HeaderMap,
 } from '@apollo/server';
 import {
