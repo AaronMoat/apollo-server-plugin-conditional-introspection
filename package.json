@@ -45,7 +45,7 @@
   "dependencies": {},
   "devDependencies": {
     "@apollo/server": "^4.3.2",
-    "@types/node": "^16.18.3",
+    "@types/node": "18",
     "commitizen": "^4.2.4",
     "graphql": "^16.6.0",
     "skuba": "6.2.0"
@@ -53,6 +53,9 @@
   "peerDependencies": {
     "@apollo/server": "^4.3.2",
     "graphql": "^16.6.0"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "skuba": {
     "entryPoint": "src/index.ts",
