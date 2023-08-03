@@ -54,13 +54,13 @@
     "@apollo/server": "^4.3.2",
     "graphql": "^16.6.0"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "skuba": {
     "entryPoint": "src/index.ts",
     "template": "oss-npm-package",
     "type": "package",
     "version": "5.1.1"
-  },
-  "engines": {
-    "node": ">=18"
   }
 }
