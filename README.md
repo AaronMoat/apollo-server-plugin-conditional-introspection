@@ -30,7 +30,7 @@ Then, in your Apollo Server config, add the plugin:
 
 ```ts
 import { ApolloServer } from '@apollo/server';
-import { ApolloServerPluginConditionalIntrospection } from 'apollo-server-plugin-conditional-introspection';
+import { createConditionalIntrospectionPlugin } from 'apollo-server-plugin-conditional-introspection';
 
 ...
 
