@@ -1,6 +1,6 @@
 {
   "name": "apollo-server-plugin-conditional-introspection",
-  "version": "0.0.0-semantically-released",
+  "version": "2.0.0",
   "description": "apollo-server-plugin-conditional-introspection",
   "homepage": "https://github.com/AaronMoat/apollo-server-plugin-conditional-introspection#readme",
   "bugs": {
